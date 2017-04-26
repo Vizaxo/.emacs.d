@@ -27,7 +27,19 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 131 :width normal :foundry "DAMA" :family "Ubuntu Mono")))))
+
+(setq org-refile-use-outline-path 'file)
+(setq org-directory "~/data/org")
+(setq org-agenda-files '("~/data/org"))
+(setq org-refile-targets '((org-agenda-files :level . 1)))
+(setq select-enable-primary t)
+(setf org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
+
 ;;Put all backup files into ~/tmp/backups
 (setq backup-directory-alist '(("." . "~/tmp/backups")))
 (setq backup-by-copying t)
 (setq org-default-notes-file (concat org-directory "/inbox.org"))
+
+(setq org-capture-templates '(("a" "" entry (file "~/data/org/inbox.org") "")))
+(define-key global-map "\C-cc"
+  (lambda () (interactive) (org-capture nil "a")))
