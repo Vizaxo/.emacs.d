@@ -38,6 +38,10 @@
 (setq ido-everywhere t)
 (setq ido-create-new-buffer 'always)
 
+;; Smex (Ido M-x)
+(require 'smex)
+(global-set-key (kbd "M-x") 'smex)
+
 ;; Org
 (setq org-refile-use-outline-path 'file)
 (setq org-directory "~/data/org")
