@@ -10,10 +10,15 @@
  '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 131 :width normal :foundry "DAMA" :family "Ubuntu Mono")))))
 
 ;; General settings
-(setq blink-cursor-mode nil)
-(setq menu-bar-mode nil)
-(setq tool-bar-mode nil)
-(setq scroll-bar-mode nil)
+(blink-cursor-mode -1)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq confirm-nonexistent-file-or-buffer nil)
+(setq inhibit-startup-message t)
+(setq inhibit-startup-echo-area-message t)
+(global-linum-mode 1)
 
 ;; Theme
 (load-theme 'deeper-blue t)
@@ -28,9 +33,10 @@
 					melpa-upstream-visit)))
 
 ;; Ido fuzzy-search
+(ido-mode 1)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
-(ido-mode 1)
+(setq ido-create-new-buffer 'always)
 
 ;; Org
 (setq org-refile-use-outline-path 'file)
