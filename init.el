@@ -1,5 +1,13 @@
 (package-initialize)
 
+;; Packages
+(setq package-archives
+   (quote
+    (("melpa" . "https://melpa.org/packages/")
+     ("gnu" . "https://elpa.gnu.org/packages/"))))
+(setq package-selected-packages (quote (magit
+					org
+					melpa-upstream-visit)))
 
 
 ;; General settings
@@ -15,14 +23,6 @@
 
 (load-file "~/.emacs.d/exwm-config.el")
 
-;; Packages
-(setq package-archives
-   (quote
-    (("melpa" . "https://stable.melpa.org/packages/")
-     ("gnu" . "https://elpa.gnu.org/packages/"))))
-(setq package-selected-packages (quote (magit
-					org
-					melpa-upstream-visit)))
 ;; Theme
 (load-theme 'zenburn t)
 
