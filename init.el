@@ -114,7 +114,8 @@
 (setq org-refile-targets '((org-agenda-files :level . 1)))
 (setq select-enable-primary t)
 (setf org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
-(setq org-capture-templates '(("a" "" entry (file "~/data/org/inbox.org") "")))
+(setq org-capture-templates '(("i" "Capture to inbox" entry (file "~/data/org/inbox.org") "* %?")
+			      ("f" "Capture to inbox with a link to the current file" entry (file "~/data/org/inbox.org") "* %?\n  %a")))
 (setq org-default-notes-file (concat org-directory "/inbox.org"))
 (global-set-key (kbd "C-c c") 'org-capture)
 
