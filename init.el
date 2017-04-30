@@ -22,6 +22,7 @@
 
 ;; Theme
 (load-theme 'deeper-blue t)
+(load-file "~/.emacs.d/exwm-config.el")
 
 ;; Packages
 (setq package-archives
@@ -59,3 +60,4 @@
 (setq backup-directory-alist '(("." . "~/tmp/backups")))
 (setq backup-by-copying t)
 (setq org-default-notes-file (concat org-directory "/inbox.org"))
+(exwm-enable)
