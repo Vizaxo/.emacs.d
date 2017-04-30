@@ -1,14 +1,82 @@
-(package-initialize)
-
 ;; Packages
+(require 'package)
+(setq package-enable-at-startup nil)
 (setq package-archives
    (quote
     (("melpa" . "https://melpa.org/packages/")
      ("gnu" . "https://elpa.gnu.org/packages/"))))
-(setq package-selected-packages (quote (magit
-					org
-					melpa-upstream-visit)))
 
+(package-initialize)
+
+;;use-package setup
+(unless (package-installed-p 'use-package)
+	(package-refresh-contents)
+	(package-install 'use-package))
+
+(use-package try
+  :ensure t)
+
+(use-package which-key
+	:ensure t
+	:config
+	(which-key-mode))
+
+(use-package web-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.php?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode)))
+
+(use-package magit
+  :ensure t
+  :bind
+  (("C-c g" . magit-status)))
+
+(use-package evil
+  :ensure t
+  :config
+  (evil-mode))
+
+(use-package exwm
+  :ensure t
+  :config
+  (require 'exwm)
+  (require 'exwm-config)
+  (exwm-config-default)
+  (exwm-config-ido)
+  (call-process-shell-command "~/data/scripts/startup.sh"))
+
+(use-package smex
+  :ensure t
+  :bind
+  (("M-x" . smex)))
+
+(use-package zenburn-theme
+  :ensure t
+  :config
+  (load-theme 'zenburn t))
+
+;; Ido fuzzy-search
+(ido-mode 1)
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(setq ido-create-new-buffer 'always)
+
+;; Org
+(setq org-refile-use-outline-path 'file)
+(setq org-directory "~/data/org")
+(setq org-agenda-files '("~/data/org"))
+(setq org-refile-targets '((org-agenda-files :level . 1)))
+(setq select-enable-primary t)
+(setf org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
+(setq org-capture-templates '(("a" "" entry (file "~/data/org/inbox.org") "")))
+(setq org-default-notes-file (concat org-directory "/inbox.org"))
+(global-set-key (kbd "C-c c") 'org-capture)
+
+;; Set the font
+(set-face-attribute 'default nil :height 130 :weight 'bold)
 
 ;; General settings
 (blink-cursor-mode -1)
@@ -22,39 +90,7 @@
 (global-linum-mode 1)
 (display-time)
 
-(load-file "~/.emacs.d/exwm-config.el")
-
-;; Theme
-(load-theme 'zenburn t)
-
-;; Ido fuzzy-search
-(ido-mode 1)
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(setq ido-create-new-buffer 'always)
-
-;; Smex (Ido M-x)
-(require 'smex)
-(global-set-key (kbd "M-x") 'smex)
-
-;; Org
-(setq org-refile-use-outline-path 'file)
-(setq org-directory "~/data/org")
-(setq org-agenda-files '("~/data/org"))
-(setq org-refile-targets '((org-agenda-files :level . 1)))
-(setq select-enable-primary t)
-(setf org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
-
-;; Org-capture
-(setq org-capture-templates '(("a" "" entry (file "~/data/org/inbox.org") "")))
-(define-key global-map "\C-cc"
-  (lambda () (interactive) (org-capture nil "a")))
-
 ;; Put all backup files into ~/tmp/backups
-(setq backup-directory-alist '(("." . "~/tmp/backups")))
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq backup-by-copying t)
-(setq org-default-notes-file (concat org-directory "/inbox.org"))
-(exwm-enable)
 
-;; Set the font
-(set-face-attribute 'default nil :height 130 :weight 'bold)
