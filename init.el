@@ -20,6 +20,7 @@
 (setq inhibit-startup-message t)
 (setq inhibit-startup-echo-area-message t)
 (global-linum-mode 1)
+(display-time)
 
 (load-file "~/.emacs.d/exwm-config.el")
 
