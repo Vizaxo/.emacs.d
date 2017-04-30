@@ -118,6 +118,7 @@
 			      ("f" "Capture to inbox with a link to the current file" entry (file "~/data/org/inbox.org") "* %?\n  %a")))
 (setq org-default-notes-file (concat org-directory "/inbox.org"))
 (global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c a") 'org-agenda)
 
 ;; Set the font
 (set-face-attribute 'default nil :height 130 :weight 'bold)
