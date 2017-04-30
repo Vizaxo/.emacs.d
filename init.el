@@ -20,8 +20,6 @@
 (setq inhibit-startup-echo-area-message t)
 (global-linum-mode 1)
 
-;; Theme
-(load-theme 'deeper-blue t)
 (load-file "~/.emacs.d/exwm-config.el")
 
 ;; Packages
@@ -32,6 +30,8 @@
 (setq package-selected-packages (quote (magit
 					org
 					melpa-upstream-visit)))
+;; Theme
+(load-theme 'zenburn t)
 
 ;; Ido fuzzy-search
 (ido-mode 1)
