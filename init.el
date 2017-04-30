@@ -1,13 +1,6 @@
 (package-initialize)
 
-(custom-set-variables
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"]))
 
-(custom-set-faces
- '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 131 :width normal :foundry "DAMA" :family "Ubuntu Mono")))))
 
 ;; General settings
 (blink-cursor-mode -1)
@@ -61,3 +54,6 @@
 (setq backup-by-copying t)
 (setq org-default-notes-file (concat org-directory "/inbox.org"))
 (exwm-enable)
+
+;; Set the font
+(set-face-attribute 'default nil :height 130 :weight 'bold)
