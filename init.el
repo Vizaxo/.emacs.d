@@ -10,14 +10,14 @@
 (setq tls-checktrust t)
 (let ((trustfile
        (replace-regexp-in-string
-        "\\\\" "/"
-        (replace-regexp-in-string
-         "\n" ""
-         (shell-command-to-string "python -m certifi")))))
+	"\\\\" "/"
+	(replace-regexp-in-string
+	 "\n" ""
+	 (shell-command-to-string "python -m certifi")))))
   (setq tls-program
-        (list
-         (format "gnutls-cli%s --x509cafile %s -p %%p %%h"
-                 (if (eq window-system 'w32) ".exe" "") trustfile))))
+	(list
+	 (format "gnutls-cli%s --x509cafile %s -p %%p %%h"
+		 (if (eq window-system 'w32) ".exe" "") trustfile))))
 
 (require 'cl)
 (let ((bad-hosts
@@ -45,32 +45,30 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (setq package-archives
-   (quote
-    (("melpa" . "https://melpa.org/packages/")
-     ("gnu" . "https://elpa.gnu.org/packages/"))))
+      '(("melpa" . "https://melpa.org/packages/")
+	("gnu"   . "https://elpa.gnu.org/packages/")))
 
 (package-initialize)
 
 ;;use-package setup
 (unless (package-installed-p 'use-package)
-	(package-refresh-contents)
-	(package-install 'use-package))
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 (use-package try
   :ensure t)
 
 (use-package which-key
-	:ensure t
-	:config
-	(which-key-mode))
+  :ensure t
+  :config
+  (which-key-mode))
 
 (use-package web-mode
   :ensure t
-  :config
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.php?\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode)))
+  :mode (("\\.html?\\'" . web-mode)
+	 ("\\.php?\\'"  . web-mode)
+	 ("\\.js?\\'"   . web-mode)
+	 ("\\.css?\\'"  . web-mode)))
 
 (use-package magit
   :ensure t
@@ -114,8 +112,11 @@
 (setq org-refile-targets '((org-agenda-files :level . 1)))
 (setq select-enable-primary t)
 (setf org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
-(setq org-capture-templates '(("i" "Capture to inbox" entry (file "~/data/org/inbox.org") "* %?")
-			      ("f" "Capture to inbox with a link to the current file" entry (file "~/data/org/inbox.org") "* %?\n  %a")))
+(setq org-capture-templates
+      '(("i" "Capture to inbox"
+	 entry (file "~/data/org/inbox.org") "* %?")
+	("f" "Capture to inbox with a link to the current file"
+	 entry (file "~/data/org/inbox.org") "* %?\n  %a")))
 (setq org-default-notes-file (concat org-directory "/inbox.org"))
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c a") 'org-agenda)
