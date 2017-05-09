@@ -175,6 +175,7 @@
 (global-linum-mode 1)
 (display-time)
 (setq select-enable-primary t)
+(setq-default indent-tabs-mode nil)
 
 ;; Put all backup files into ~/tmp/backups
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
