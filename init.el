@@ -264,6 +264,12 @@
   :bind
   (("C-l" . ace-jump-word-mode)))
 
+(use-package linum-relative
+  :ensure t
+  :config
+  (setq linum-relative-current-symbol "-->")
+  (setq linum-relative-format "%3s ")
+  (linum-relative-global-mode))
 
 ;; General settings
 (blink-cursor-mode -1)
