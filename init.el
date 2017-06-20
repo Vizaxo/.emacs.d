@@ -95,8 +95,69 @@
   :config
   (require 'exwm)
   (require 'exwm-config)
-  (exwm-config-default)
+
+  ;; Set the initial workspace number.
+  (setq exwm-workspace-number 0)
+  ;; Make class name the buffer name
+  (add-hook 'exwm-update-class-hook
+            (lambda ()
+              (exwm-workspace-rename-buffer exwm-class-name)))
+
+  ;; Don't use evil-mode in exwm buffers
+  (add-to-list 'evil-emacs-state-modes 'exwm-mode)
+
+  ;; 's-w': Switch workspace
+  (exwm-input-set-key (kbd "s-w") #'exwm-workspace-switch)
+  ;; 's-N': Switch to certain workspace
+  (dotimes (i 10)
+    (exwm-input-set-key (kbd (format "s-%d" i))
+                        `(lambda ()
+                           (interactive)
+                           (exwm-workspace-switch-create ,i))))
+  ;; 's-r': Launch application
+  (exwm-input-set-key (kbd "s-r")
+                      (lambda (command)
+                        (interactive (list (read-shell-command "$ ")))
+                        (start-process-shell-command command nil command)))
+
+  ;; Better window management
+  (exwm-input-set-key (kbd "s-h") 'windmove-left)
+  (exwm-input-set-key (kbd "s-j") 'windmove-down)
+  (exwm-input-set-key (kbd "s-k") 'windmove-up)
+  (exwm-input-set-key (kbd "s-l") 'windmove-right)
+
+  (exwm-input-set-key (kbd "s-s") 'split-window-right)
+  (exwm-input-set-key (kbd "s-v") 'split-window-vertically)
+  (exwm-input-set-key (kbd "s-d") 'delete-window)
+
+  ;; Save my hands
+  (exwm-input-set-key (kbd "s-f") 'find-file)
+  (exwm-input-set-key (kbd "s-b") 'ido-switch-buffer)
+
+  ;; Line-editing shortcuts
+  (exwm-input-set-simulation-keys
+   '(([?\C-b] . left)
+     ([?\C-f] . right)
+     ([?\M-f] . C-right)
+     ([?\M-b] . C-left)
+     ([?\C-y] . S-insert)
+     ([?\C-p] . up)
+     ([?\C-n] . down)
+     ([?\C-a] . home)
+     ([?\C-e] . end)
+     ([?\M-v] . prior)
+     ([?\C-v] . next)
+     ([?\C-d] . delete)
+     ([?\C-k] . (S-end delete))))
+  ;; Configure Ido
   (exwm-config-ido)
+  ;; Other configurations
+  (exwm-config-misc)
+
+  ;; Allow switching buffers between workspaces
+  (setq exwm-workspace-show-all-buffers t)
+  (setq exwm-layout-show-all-buffers t)
+
   (call-process-shell-command "~/data/scripts/startup.sh"))
 
 (use-package smex
