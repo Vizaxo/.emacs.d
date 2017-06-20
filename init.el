@@ -223,9 +223,12 @@
           ("f" "Capture to inbox with a link to the current file"
            entry (file "~/data/org/inbox.org") "* %?\n  %a")))
   (setq org-default-notes-file (concat org-directory "/inbox.org"))
+  (defun find-org-directory () (interactive) (find-file org-directory))
+  (defun my-org-capture () (interactive) (org-capture nil "i"))
   :bind
-  (("C-c c" . org-capture)
-   ("C-c a" . org-agenda)))
+  (("C-c c" . my-org-capture)
+   ("C-c a" . org-agenda)
+   ("C-c o" . find-org-directory)))
 
 (use-package eclim
   :ensure t
