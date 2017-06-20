@@ -70,9 +70,9 @@
 (use-package web-mode
   :ensure t
   :mode (("\\.html?\\'" . web-mode)
-	 ("\\.php?\\'"  . web-mode)
-	 ("\\.js?\\'"   . web-mode)
-	 ("\\.css?\\'"  . web-mode)))
+         ("\\.php?\\'"  . web-mode)
+         ("\\.js?\\'"   . web-mode)
+         ("\\.css?\\'"  . web-mode)))
 
 (use-package magit
   :ensure t
@@ -124,7 +124,7 @@
   :ensure t
   :config
   (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right
-	ido-vertical-show-count t)
+        ido-vertical-show-count t)
   (ido-vertical-mode 1))
 
 (use-package flx-ido
@@ -141,10 +141,10 @@
 			     (("~/data/notes") :level . 1)))
   (setf org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
   (setq org-capture-templates
-	'(("i" "Capture to inbox"
-	   entry (file "~/data/org/inbox.org") "* %?")
-	  ("f" "Capture to inbox with a link to the current file"
-	   entry (file "~/data/org/inbox.org") "* %?\n  %a")))
+        '(("i" "Capture to inbox"
+           entry (file "~/data/org/inbox.org") "* %?")
+          ("f" "Capture to inbox with a link to the current file"
+           entry (file "~/data/org/inbox.org") "* %?\n  %a")))
   (setq org-default-notes-file (concat org-directory "/inbox.org"))
   :bind
   (("C-c c" . org-capture)
