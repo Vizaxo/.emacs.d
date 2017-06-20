@@ -230,6 +230,22 @@
    ("C-c a" . org-agenda)
    ("C-c o" . find-org-directory)))
 
+(use-package company
+  :ensure t
+  :config
+  (define-key company-active-map (kbd "RET") nil)
+  (global-company-mode t)
+  ;; Complete imediately
+  (setq company-minimum-prefix-length 0)
+  (setq company-idle-delay nil)
+  ;; Don't downcase completions
+  (setq company-dabbrev-downcase nil))
+
+(use-package company-emacs-eclim
+  :ensure t
+  :config
+  (company-emacs-eclim-setup))
+
 (use-package eclim
   :ensure t
   :config
@@ -243,18 +259,11 @@
     (replace-regexp-in-string "^.*src/" "src/" path))
   (advice-add 'eclim--project-current-file :filter-return #'my-eclim-fix-relative-path))
 
-(use-package company-emacs-eclim
 (use-package ace-jump-mode
   :ensure t
   :bind
   (("C-l" . ace-jump-word-mode)))
 
-  :ensure t
-  :config
-  (company-emacs-eclim-setup)
-  (global-company-mode t)
-  (setq company-minimum-prefix-length 0)
-  (setq company-idle-delay 0.01))
 
 ;; General settings
 (blink-cursor-mode -1)
