@@ -76,8 +76,14 @@
 
 (use-package magit
   :ensure t
+  :config
+  (defun my-magit-status ()
+    (interactive)
+    (if (string= (buffer-name) "jetbrains-idea-ce")
+        (magit-status-internal "~/data/programming/Terasology/")
+      (magit-status)))
   :bind
-  (("C-c g" . magit-status)))
+  (("C-c g" . my-magit-status)))
 
 (use-package evil
   :ensure t
