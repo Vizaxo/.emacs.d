@@ -195,6 +195,7 @@
   (ido-vertical-mode 1))
 
 (use-package flx-ido
+  :ensure t
   :config
   (flx-ido-mode 1))
 
