@@ -240,6 +240,11 @@
   (add-hook 'java-mode-hook 'eclim-mode))
 
 (use-package company-emacs-eclim
+(use-package ace-jump-mode
+  :ensure t
+  :bind
+  (("C-l" . ace-jump-word-mode)))
+
   :ensure t
   :config
   (company-emacs-eclim-setup)
