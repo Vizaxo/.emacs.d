@@ -203,10 +203,19 @@
   :ensure t
   :config
   (setq org-refile-use-outline-path 'file)
+  (setq org-agenda-span 21)
   (setq org-directory "~/data/org")
-  (setq org-agenda-files '("~/data/org" "~/data/notes/"))
+  (setq org-agenda-files '("~/data/org/inbox.org"
+                           "~/data/org/waiting.org"
+                           "~/data/org/calendar.org"
+                           "~/data/org/actions.org"
+                           "~/data/org/projects.org"
+                           "~/data/org/someday.org"
+                           "~/data/org/review.org"
+                           "~/data/org/reference.org"))
   (setq org-refile-targets '((org-agenda-files :level . 1)
-			     (("~/data/notes") :level . 1)))
+                             ("~/data/org/archive/archive-projects.org" :level . 1)
+                             ("~/data/org/archive/archive-actions.org" :level . 1)))
   (setf org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
   (setq org-capture-templates
         '(("i" "Capture to inbox"
