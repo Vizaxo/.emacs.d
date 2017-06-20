@@ -237,7 +237,11 @@
   (setq help-at-pt-display-when-idle t)
   (setq help-at-pt-timer-delay 0.01)
   (help-at-pt-set-timer)
-  (add-hook 'java-mode-hook 'eclim-mode))
+  (add-hook 'java-mode-hook 'eclim-mode)
+  ;; Fixes a problem with multi-project eclim projects adding the project name twice
+  (defun my-eclim-fix-relative-path (path)
+    (replace-regexp-in-string "^.*src/" "src/" path))
+  (advice-add 'eclim--project-current-file :filter-return #'my-eclim-fix-relative-path))
 
 (use-package company-emacs-eclim
 (use-package ace-jump-mode
