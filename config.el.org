@@ -108,6 +108,10 @@
 
     (exwm-input-set-key (kbd "s-s") 'split-window-right)
     (exwm-input-set-key (kbd "s-v") 'split-window-vertically)
+
+    (advice-add 'split-window-right :after 'windmove-right)
+    (advice-add 'split-window-vertically :after 'windmove-down)
+
     (exwm-input-set-key (kbd "s-d") 'delete-window)
     (exwm-input-set-key (kbd "s-q") 'kill-this-buffer)
 
