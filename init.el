@@ -301,6 +301,8 @@ Put the timestamp on a newline, like org-schedule."
   :config
   (rainbow-delimiters-mode 1))
 
+(use-package paredit
+  :ensure t)
 
 (use-package pretty-symbols
   :ensure t
@@ -359,3 +361,16 @@ Put the timestamp on a newline, like org-schedule."
 ;; Todo: make it display when you are on that line
 ;; But it will only update upon leaving insert mode
 (setq-default show-trailing-whitespace t)
+
+
+;;; Custom functions
+
+(defun eval-current-sexp (arg)
+  "Evaluate the current sexp (or the last sexp, if immediately following a )"
+  (interactive "P")
+  (save-excursion
+    (unless (looking-at ")")
+      (backward-char))
+    (paredit-forward-up)
+    (eval-last-sexp arg)))
+(define-key global-map (kbd "C-c e") 'eval-current-sexp)
