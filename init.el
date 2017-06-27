@@ -45,7 +45,10 @@
                            (lambda (retrieved))))
             (t (with-temp-buffer (write-file tls-safe)))))))
 
-;; Packages
+
+;;; Packages
+
+;; Basic package setup
 (require 'package)
 (setq package-enable-at-startup nil)
 (setq package-archives
@@ -54,10 +57,12 @@
 
 (package-initialize)
 
-;;use-package setup
+;; use-package setup
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+;; use-package declarations
 
 (use-package try
   :ensure t)
