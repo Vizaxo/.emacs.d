@@ -273,6 +273,12 @@ Put the timestamp on a newline, like org-schedule."
 
 (use-package ace-jump-mode
   :ensure t
+  :config
+  ;; Only search in the current frame
+  ;; Might need to be adjusted if I want multi-monitor jumping
+  ;; Currently exwm frames are always marked as visible, so 'visible won't work
+  ;; (mapcar 'frame-visible-p (frame-list)) => (t t t t t t t)
+  (setq ace-jump-mode-scope 'frame)
   :bind
   (("C-l" . ace-jump-word-mode)))
 
