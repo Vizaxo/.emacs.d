@@ -229,13 +229,24 @@
   (setq org-default-notes-file (concat org-directory "/inbox.org"))
   (defun find-org-directory () (interactive) (find-file org-directory))
   (defun my-org-capture () (interactive) (org-capture nil "i"))
+  (defun my-org-time-stamp ()
+    "Add a timestamp to an org-mode heading.
+Put the timestamp on a newline, like org-schedule."
+    (interactive)
+    (let ((inhibit-quit t))
+      (save-excursion
+        (evil-open-below 1)
+        (unless (with-local-quit (org-time-stamp nil))
+          (call-interactively 'evil-delete-whole-line)))
+    (evil-normal-state)))
   :bind
   (("C-c c" . my-org-capture)
    ("C-c a" . org-agenda)
-   ("C-c o" . find-org-directory)))
+   ("C-c o" . find-org-directory)
+   ("C-c d" . my-org-time-stamp)))
 
 (use-package company
-  :ensure t
+  :ensure nil
   :config
   (define-key company-active-map (kbd "RET") nil)
   (global-company-mode t)
