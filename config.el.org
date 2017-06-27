@@ -1,19 +1,33 @@
+* Packages
+** Use-package setup
 #+BEGIN_SRC emacs-lisp
 
-  ;; use-package setup
   (unless (package-installed-p 'use-package)
     (package-refresh-contents)
     (package-install 'use-package))
 
-  ;; use-package declarations
+#+END_SRC
+
+** try
+#+BEGIN_SRC emacs-lisp
 
   (use-package try
     :ensure t)
+
+#+END_SRC
+
+** which-key
+#+BEGIN_SRC emacs-lisp
 
   (use-package which-key
     :ensure t
     :config
     (which-key-mode))
+
+#+END_SRC
+
+** web-mode
+#+BEGIN_SRC emacs-lisp
 
   (use-package web-mode
     :ensure t
@@ -21,6 +35,11 @@
            ("\\.php?\\'"  . web-mode)
            ("\\.js?\\'"   . web-mode)
            ("\\.css?\\'"  . web-mode)))
+
+#+END_SRC
+
+** magit
+#+BEGIN_SRC emacs-lisp
 
   (use-package magit
     :ensure t
@@ -33,6 +52,11 @@
     :bind
     (("C-c g" . my-magit-status)))
 
+#+END_SRC
+
+** evil
+#+BEGIN_SRC emacs-lisp
+
   (use-package evil
     :ensure t
     :config
@@ -40,6 +64,11 @@
     (setq evil-want-change-word-to-end nil)
     (setq evil-move-cursor-back nil)
     (evil-mode))
+
+#+END_SRC
+
+** exwm
+#+BEGIN_SRC emacs-lisp
 
   (use-package exwm
     :ensure t
@@ -112,10 +141,20 @@
 
     (call-process-shell-command "~/data/scripts/startup.sh"))
 
+#+END_SRC
+
+** smex
+#+BEGIN_SRC emacs-lisp
+
   (use-package smex
     :ensure t
     :bind
     (("M-x" . smex)))
+
+#+END_SRC
+
+** zenburn-theme
+#+BEGIN_SRC emacs-lisp
 
   (use-package zenburn-theme
     :ensure t
@@ -126,6 +165,12 @@
   ;; TODO: add moree, and check out other configs, starter packs, etc.
   ;; TODO: maybe configure fonts?
   ;; TODO: properly setup evil-mode bindings
+#+END_SRC
+
+** ido
+*** ido
+#+BEGIN_SRC emacs-lisp
+
   (use-package ido
     :ensure t
     :config
@@ -134,10 +179,20 @@
     (setq ido-enable-flex-matching t)
     (setq ido-create-new-buffer 'always))
 
+#+END_SRC
+
+*** ido-ubiquitous
+#+BEGIN_SRC emacs-lisp
+
   (use-package ido-ubiquitous
     :ensure t
     :config
     (ido-ubiquitous-mode))
+
+#+END_SRC
+
+*** ido-vertical-mode
+#+BEGIN_SRC emacs-lisp
 
   (use-package ido-vertical-mode
     :ensure t
@@ -146,10 +201,20 @@
           ido-vertical-show-count t)
     (ido-vertical-mode 1))
 
+#+END_SRC
+
+*** flx-ido
+#+BEGIN_SRC emacs-lisp
+
   (use-package flx-ido
     :ensure t
     :config
     (flx-ido-mode 1))
+
+#+END_SRC
+
+** org
+#+BEGIN_SRC emacs-lisp
 
   (use-package org
     :ensure t
@@ -193,11 +258,21 @@
      ("C-c o" . find-org-directory)
      ("C-c d" . my-org-time-stamp)))
 
+#+END_SRC
+
+** auto-complete
+#+BEGIN_SRC emacs-lisp
+
   (use-package auto-complete
     :ensure t
     :config
     (ac-config-default)
     (global-auto-complete-mode))
+
+#+END_SRC
+
+** eclim
+#+BEGIN_SRC emacs-lisp
 
   (use-package eclim
     :ensure t
@@ -208,6 +283,11 @@
     (defun my-eclim-fix-relative-path (path)
       (replace-regexp-in-string "^.*src/" "src/" path))
     (advice-add 'eclim--project-current-file :filter-return #'my-eclim-fix-relative-path))
+
+#+END_SRC
+
+** ace-jump-mode
+#+BEGIN_SRC emacs-lisp
 
   (use-package ace-jump-mode
     :ensure t
@@ -222,6 +302,11 @@
     :bind
     (("C-l" . ace-jump-word-mode)))
 
+#+END_SRC
+
+** linum-relative
+#+BEGIN_SRC emacs-lisp
+
   (use-package linum-relative
     :ensure t
     :config
@@ -229,23 +314,40 @@
     (setq linum-relative-format "%3s ")
     (linum-relative-global-mode))
 
+#+END_SRC
+
+** rainbow-delimiters
+#+BEGIN_SRC emacs-lisp
+
   (use-package rainbow-delimiters
     :ensure t
     :config
     (rainbow-delimiters-mode 1))
 
+#+END_SRC
+
+** paredit
+#+BEGIN_SRC emacs-lisp
+
   (use-package paredit
     :ensure t)
+
+#+END_SRC
+
+** pretty-symbols
+#+BEGIN_SRC emacs-lisp
 
   (use-package pretty-symbols
     :ensure t
     :config
     (global-prettify-symbols-mode))
 
+#+END_SRC
 
-  ;;; General settings
+* General settings
+** UI
+#+BEGIN_SRC emacs-lisp
 
-  ;; UI
   (blink-cursor-mode -1)
   (menu-bar-mode -1)
   (tool-bar-mode -1)
@@ -253,50 +355,96 @@
   (setq inhibit-startup-message t)
   (display-time)
 
-  ;; Consistent prompts
+#+END_SRC
+
+** Consistent prompts
+#+BEGIN_SRC emacs-lisp
+
   (fset 'yes-or-no-p 'y-or-n-p)
 
-  ;; Don't ask about creating new buffer
+#+END_SRC
+
+** Don't ask about creating new buffer
+#+BEGIN_SRC emacs-lisp
+
   (setq confirm-nonexistent-file-or-buffer nil)
 
-  ;; Use the primary clipboard for emacs
+#+END_SRC
+
+** Use the primary clipboard for emacs
+#+BEGIN_SRC emacs-lisp
+
   (setq select-enable-primary t)
   (setq-default indent-tabs-mode nil)
 
-  ;; Make tab try to autocomplete
+#+END_SRC
+
+** Make tab try to autocomplete
+#+BEGIN_SRC emacs-lisp
+
   (setq tab-always-indent 'complete)
 
-  ;; Scroll by one line at a time
+#+END_SRC
+
+** Scroll by one line at a time
+#+BEGIN_SRC emacs-lisp
+
   ;; But on big jumps, re-center ponit
   (setq scroll-conservatively 5)
 
-  ;; Put all backup files into ~/tmp/backups
+#+END_SRC
+
+** Put all backup files into ~/tmp/backups
+#+BEGIN_SRC emacs-lisp
+
   (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
   (setq backup-by-copying t)
 
-  ;; Show the matching paren
+#+END_SRC
+
+** Show the matching paren
+#+BEGIN_SRC emacs-lisp
+
   (show-paren-mode 1)
   (setq show-paren-delay 0)
 
-  ;; Help at point
+#+END_SRC
+
+** Help at point
+#+BEGIN_SRC emacs-lisp
+
   (setq help-at-pt-display-when-idle t)
   (setq help-at-pt-timer-delay 0)
   (help-at-pt-set-timer)
 
-  ;; Set the font
+#+END_SRC
+
+** Set the font
+#+BEGIN_SRC emacs-lisp
+
   (set-face-attribute 'default nil :height 130 :weight 'bold)
 
-  ;; Automatically revert files if their contents changes on disk
-  (global-auto-revert-mode 1)
-  ;; Todo: make Emacs ask whether to revert modified buffer when it is modified disk?
+#+END_SRC
 
-  ;; Show trailing whitespace
-  ;; Todo: make it display when you are on that line
-  ;; But it will only update upon leaving insert mode
+** Automatically revert files if their contents changes on disk
+Todo: make Emacs ask whether to revert modified buffer when it is modified on disk
+#+BEGIN_SRC emacs-lisp
+
+  (global-auto-revert-mode 1)
+
+#+END_SRC
+
+** Show trailing whitespace
+Todo: make trailing whitespace only show when you have left Evil insert state
+#+BEGIN_SRC emacs-lisp
+
   (setq-default show-trailing-whitespace t)
 
+#+END_SRC
 
-  ;;; Custom functions
+* Custom functions
+** eval-current-sexp
+#+BEGIN_SRC emacs-lisp
 
   (defun eval-current-sexp (arg)
     "Evaluate the current sexp (or the last sexp, if immediately following a )"
@@ -307,6 +455,11 @@
       (paredit-forward-up)
       (eval-last-sexp arg)))
   (define-key global-map (kbd "C-c e") 'eval-current-sexp)
+
+#+END_SRC
+
+** rename-file-and-buffer
+#+BEGIN_SRC emacs-lisp
 
   (defun rename-file-and-buffer (new-name)
     "Renames both current buffer and file it's visiting to NEW-NAME.
@@ -323,6 +476,11 @@
              (rename-buffer new-name)
              (set-visited-file-name new-name)
              (set-buffer-modified-p nil)))))
+
+#+END_SRC
+
+** move-buffer-file
+#+BEGIN_SRC emacs-lisp
 
   (defun move-buffer-file (dir)
     "Moves both current buffer and file it's visiting to DIR.
@@ -342,3 +500,4 @@
         (set-buffer-modified-p nil))))
 
 #+END_SRC
+
