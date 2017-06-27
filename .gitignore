@@ -1,0 +1,5 @@
+# Ignore everything by default
+/*
+
+# Un-ignore .el files in the top-level directory
+!/*.el
