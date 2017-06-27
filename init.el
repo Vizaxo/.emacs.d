@@ -99,30 +99,69 @@
   :config
   (load-theme 'zenburn t))
 
-;; Ido fuzzy-search
-(ido-mode 1)
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(setq ido-create-new-buffer 'always)
+;; Lots of improvements from https://gist.github.com/belak/ca1c9ae75e53324ee16e2e5289a9c4bc
+;; TODO: add moree, and check out other configs, starter packs, etc.
+;; TODO: maybe configure fonts?
+;; TODO: properly setup evil-mode bindings
+(use-package ido
+  :ensure t
+  :config
+  (ido-mode 1)
+  (ido-everywhere t)
+  (setq ido-enable-flex-matching t)
+  (setq ido-create-new-buffer 'always))
 
-;; Org
-(setq org-refile-use-outline-path 'file)
-(setq org-directory "~/data/org")
-(setq org-agenda-files '("~/data/org"))
-(setq org-refile-targets '((org-agenda-files :level . 1)))
-(setq select-enable-primary t)
-(setf org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
-(setq org-capture-templates
-      '(("i" "Capture to inbox"
-	 entry (file "~/data/org/inbox.org") "* %?")
-	("f" "Capture to inbox with a link to the current file"
-	 entry (file "~/data/org/inbox.org") "* %?\n  %a")))
-(setq org-default-notes-file (concat org-directory "/inbox.org"))
-(global-set-key (kbd "C-c c") 'org-capture)
-(global-set-key (kbd "C-c a") 'org-agenda)
+(use-package ido-ubiquitous
+  :ensure t
+  :config
+  (ido-ubiquitous-mode))
 
-;; Set the font
-(set-face-attribute 'default nil :height 130 :weight 'bold)
+(use-package ido-vertical-mode
+  :ensure t
+  :config
+  (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right
+	ido-vertical-show-count t)
+  (ido-vertical-mode 1))
+
+(use-package flx-ido
+  :config
+  (flx-ido-mode 1))
+
+(use-package org
+  :ensure t
+  :config
+  (setq org-refile-use-outline-path 'file)
+  (setq org-directory "~/data/org")
+  (setq org-agenda-files '("~/data/org" "~/data/notes/"))
+  (setq org-refile-targets '((org-agenda-files :level . 1)
+			     (("~/data/notes") :level . 1)))
+  (setf org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
+  (setq org-capture-templates
+	'(("i" "Capture to inbox"
+	   entry (file "~/data/org/inbox.org") "* %?")
+	  ("f" "Capture to inbox with a link to the current file"
+	   entry (file "~/data/org/inbox.org") "* %?\n  %a")))
+  (setq org-default-notes-file (concat org-directory "/inbox.org"))
+  :bind
+  (("C-c c" . org-capture)
+   ("C-c a" . org-agenda)))
+
+(use-package eclim
+  :ensure t
+  :config
+  (setq eclim-executable "/home/mitch/programs/eclipse-neon/eclim")
+  (setq help-at-pt-display-when-idle t)
+  (setq help-at-pt-timer-delay 0.01)
+  (help-at-pt-set-timer)
+  (add-hook 'java-mode-hook 'eclim-mode))
+
+(use-package company-emacs-eclim
+  :ensure t
+  :config
+  (company-emacs-eclim-setup)
+  (global-company-mode t)
+  (setq company-minimum-prefix-length 0)
+  (setq company-idle-delay 0.01))
 
 ;; General settings
 (blink-cursor-mode -1)
@@ -135,8 +174,11 @@
 (setq inhibit-startup-echo-area-message t)
 (global-linum-mode 1)
 (display-time)
+(setq select-enable-primary t)
 
 ;; Put all backup files into ~/tmp/backups
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq backup-by-copying t)
 
+;; Set the font
+(set-face-attribute 'default nil :height 130 :weight 'bold)
