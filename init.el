@@ -132,6 +132,7 @@
   (exwm-input-set-key (kbd "s-s") 'split-window-right)
   (exwm-input-set-key (kbd "s-v") 'split-window-vertically)
   (exwm-input-set-key (kbd "s-d") 'delete-window)
+  (exwm-input-set-key (kbd "s-q") 'kill-this-buffer)
 
   ;; Save my hands
   (exwm-input-set-key (kbd "s-f") 'find-file)
