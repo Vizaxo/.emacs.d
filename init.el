@@ -250,21 +250,11 @@ Put the timestamp on a newline, like org-schedule."
    ("C-c o" . find-org-directory)
    ("C-c d" . my-org-time-stamp)))
 
-(use-package company
-  :ensure nil
-  :config
-  (define-key company-active-map (kbd "RET") nil)
-  (global-company-mode t)
-  ;; Complete imediately
-  (setq company-minimum-prefix-length 0)
-  (setq company-idle-delay nil)
-  ;; Don't downcase completions
-  (setq company-dabbrev-downcase nil))
-
-(use-package company-emacs-eclim
+(use-package auto-complete
   :ensure t
   :config
-  (company-emacs-eclim-setup))
+  (ac-config-default)
+  (global-auto-complete-mode))
 
 (use-package eclim
   :ensure t
