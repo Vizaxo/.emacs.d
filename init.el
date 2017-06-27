@@ -292,6 +292,11 @@ Put the timestamp on a newline, like org-schedule."
   (linum-relative-global-mode))
 
 ;; General settings
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (rainbow-delimiters-mode 1))
+
 (blink-cursor-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
