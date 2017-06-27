@@ -88,6 +88,9 @@
 (use-package evil
   :ensure t
   :config
+  ;; Make Evil's point behave more like Emacs'
+  (setq evil-want-change-word-to-end nil)
+  (setq evil-move-cursor-back nil)
   (evil-mode))
 
 (use-package exwm
