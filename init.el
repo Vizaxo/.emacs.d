@@ -297,6 +297,11 @@ Put the timestamp on a newline, like org-schedule."
   :config
   (rainbow-delimiters-mode 1))
 
+
+(use-package pretty-symbols
+  :ensure t
+  :config
+  (global-prettify-symbols-mode))
 (blink-cursor-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
