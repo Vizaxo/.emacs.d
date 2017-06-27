@@ -291,7 +291,6 @@ Put the timestamp on a newline, like org-schedule."
   (setq linum-relative-format "%3s ")
   (linum-relative-global-mode))
 
-;; General settings
 (use-package rainbow-delimiters
   :ensure t
   :config
@@ -302,27 +301,56 @@ Put the timestamp on a newline, like org-schedule."
   :ensure t
   :config
   (global-prettify-symbols-mode))
+
+
+;;; General settings
+
+;; UI
 (blink-cursor-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-(fset 'yes-or-no-p 'y-or-n-p)
-(setq confirm-nonexistent-file-or-buffer nil)
 (setq inhibit-startup-message t)
-(setq inhibit-startup-echo-area-message t)
-(global-linum-mode 1)
 (display-time)
+
+;; Consistent prompts
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; Don't ask about creating new buffer
+(setq confirm-nonexistent-file-or-buffer nil)
+
+;; Use the primary clipboard for emacs
 (setq select-enable-primary t)
 (setq-default indent-tabs-mode nil)
+
+;; Make tab try to autocomplete
+(setq tab-always-indent 'complete)
+
+;; Scroll by one line at a time
+;; But on big jumps, re-center ponit
+(setq scroll-conservatively 5)
 
 ;; Put all backup files into ~/tmp/backups
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq backup-by-copying t)
 
+;; Show the matching paren
+(show-paren-mode 1)
+(setq show-paren-delay 0)
 
 ;; Help at point
 (setq help-at-pt-display-when-idle t)
 (setq help-at-pt-timer-delay 0)
 (help-at-pt-set-timer)
+
 ;; Set the font
 (set-face-attribute 'default nil :height 130 :weight 'bold)
+
+;; Automatically revert files if their contents changes on disk
+(global-auto-revert-mode 1)
+;; Todo: make Emacs ask whether to revert modified buffer when it is modified disk?
+
+;; Show trailing whitespace
+;; Todo: make it display when you are on that line
+;; But it will only update upon leaving insert mode
+(setq-default show-trailing-whitespace t)
