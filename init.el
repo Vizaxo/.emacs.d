@@ -279,6 +279,8 @@ Put the timestamp on a newline, like org-schedule."
   ;; Currently exwm frames are always marked as visible, so 'visible won't work
   ;; (mapcar 'frame-visible-p (frame-list)) => (t t t t t t t)
   (setq ace-jump-mode-scope 'frame)
+  :init
+  (evil-define-key '(normal motion) global-map "s" 'evil-ace-jump-word-mode)
   :bind
   (("C-l" . ace-jump-word-mode)))
 
