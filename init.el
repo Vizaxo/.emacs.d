@@ -217,7 +217,7 @@
                            "~/data/org/someday.org"
                            "~/data/org/review.org"
                            "~/data/org/reference.org"))
-  (setq org-refile-targets '((org-agenda-files :level . 1)
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 2)
                              ("~/data/org/archive/archive-projects.org" :level . 1)
                              ("~/data/org/archive/archive-actions.org" :level . 1)))
   (setf org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
