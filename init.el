@@ -265,9 +265,6 @@ Put the timestamp on a newline, like org-schedule."
   :ensure t
   :config
   (setq eclim-executable "/home/mitch/programs/eclipse-neon/eclim")
-  (setq help-at-pt-display-when-idle t)
-  (setq help-at-pt-timer-delay 0.01)
-  (help-at-pt-set-timer)
   (add-hook 'java-mode-hook 'eclim-mode)
   ;; Fixes a problem with multi-project eclim projects adding the project name twice
   (defun my-eclim-fix-relative-path (path)
@@ -304,5 +301,10 @@ Put the timestamp on a newline, like org-schedule."
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq backup-by-copying t)
 
+
+;; Help at point
+(setq help-at-pt-display-when-idle t)
+(setq help-at-pt-timer-delay 0)
+(help-at-pt-set-timer)
 ;; Set the font
 (set-face-attribute 'default nil :height 130 :weight 'bold)
