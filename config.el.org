@@ -226,6 +226,8 @@
     :ensure t
     :config
     (setq org-refile-use-outline-path 'file)
+    (setq org-src-fontify-natively t)
+    (setq org-src-tab-acts-natively t)
     (setq org-agenda-span 21)
     (setq org-directory "~/data/org")
     (setq org-agenda-files '("~/data/org/inbox.org"
