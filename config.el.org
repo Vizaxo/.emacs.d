@@ -119,6 +119,8 @@
     (exwm-input-set-key (kbd "s-f") 'find-file)
     (exwm-input-set-key (kbd "s-b") 'ido-switch-buffer)
 
+    (exwm-input-set-key (kbd "s-w") 'save-buffer)
+
     ;; Line-editing shortcuts
     (exwm-input-set-simulation-keys
      '(([?\C-b] . left)
