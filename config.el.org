@@ -312,15 +312,21 @@
 
 #+END_SRC
 
-** linum-relative
+** relative line numbers
+
+If I'm using the experimental line-numbers build, use the line-number features from that build.
+Otherwise, use linum-relative.
+
 #+BEGIN_SRC emacs-lisp
 
-  (use-package linum-relative
-    :ensure t
-    :config
-    (setq linum-relative-current-symbol "-->")
-    (setq linum-relative-format "%3s ")
-    (linum-relative-global-mode))
+  (if (boundp 'display-line-numbers)
+      (setq-default display-line-numbers 'relative)
+    (use-package linum-relative
+      :ensure t
+      :config
+      (setq linum-relative-current-symbol "-->")
+      (setq linum-relative-format "%3s ")
+      (linum-relative-global-mode)))
 
 #+END_SRC
 
