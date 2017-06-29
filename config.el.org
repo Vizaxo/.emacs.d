@@ -358,6 +358,16 @@ Otherwise, use linum-relative.
 
 #+END_SRC
 
+** gnus
+#+BEGIN_SRC emacs-lisp
+
+  (use-package gnus
+    :ensure t
+    :config
+    (org-babel-load-file (concat user-emacs-directory "gnus.el.org")))
+
+#+END_SRC
+
 * General settings
 ** UI
 #+BEGIN_SRC emacs-lisp
