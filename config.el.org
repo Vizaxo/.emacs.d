@@ -113,7 +113,9 @@
     (advice-add 'split-window-vertically :after 'windmove-down)
 
     (exwm-input-set-key (kbd "s-d") 'delete-window)
-    (exwm-input-set-key (kbd "s-q") 'kill-this-buffer)
+    (exwm-input-set-key (kbd "s-q") '(lambda ()
+                                       (interactive)
+                                       (kill-buffer (current-buffer))))
 
     ;; Save my hands
     (exwm-input-set-key (kbd "s-f") 'find-file)
