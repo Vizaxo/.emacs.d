@@ -380,6 +380,14 @@ Otherwise, use linum-relative.
 
 #+END_SRC
 
+** gpg
+#+BEGIN_SRC emacs-lisp
+
+  (setq epa-pinentry-mode 'loopback)
+  (pinentry-start)
+
+#+END_SRC
+
 * General settings
 ** UI
 #+BEGIN_SRC emacs-lisp
