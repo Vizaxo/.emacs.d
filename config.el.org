@@ -474,7 +474,8 @@ Otherwise, use linum-relative.
 ** Set the font
 #+BEGIN_SRC emacs-lisp
 
-  (set-face-attribute 'default nil :height 130 :weight 'bold)
+  (set-face-attribute 'default nil :height 135 :weight 'normal)
+  (setq-default line-spacing 4)
 
 #+END_SRC
 
