@@ -123,6 +123,16 @@
 
     (exwm-input-set-key (kbd "s-w") 'save-buffer)
 
+    ;; Swap between qwerty and Dvorak with the same keyboard key
+    (exwm-input-set-key (kbd "s-;") '(lambda ()
+                                       (interactive)
+                                       (start-process-shell-command "aoeu" nil "aoeu")
+                                       (message "Qwerty")))
+    (exwm-input-set-key (kbd "s-z") '(lambda ()
+                                       (interactive)
+                                       (start-process-shell-command "asdf" nil "asdf")
+                                       (message "Dvorak")))
+
     ;; Line-editing shortcuts
     (exwm-input-set-simulation-keys
      '(([?\C-b] . left)
