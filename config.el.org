@@ -212,7 +212,7 @@
       (interactive)
       (if (string= (buffer-name) "jetbrains-idea-ce")
           (magit-status-internal "~/data/programming/Terasology/")
-        (magit-status)))
+        (magit-status-internal default-directory)))
     :bind
     (("C-c g" . my-magit-status)))
 
