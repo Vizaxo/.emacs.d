@@ -15,6 +15,137 @@
 
 #+END_SRC
 
+** pretty-symbols
+#+BEGIN_SRC emacs-lisp
+
+  (use-package pretty-symbols
+    :ensure t
+    :config
+    (global-prettify-symbols-mode))
+
+  (defun add-pretty-symbols-list (symbols)
+    "Add a list of prettified symbol-pairs to the buffer-local prettify-symbols-alist"
+    (setq-local prettify-symbols-alist (append prettify-symbols-alist
+                                               symbols)))
+
+  (defun add-pretty-symbols-hook (mode-hook symbols)
+    "Add a list of prettified symbol-pairs to a given mode."
+    (add-hook mode-hook `(lambda ()
+                          (add-pretty-symbols-list (quote ,symbols)))))
+
+  (defvar double-struck-letters
+    '(("|A|" . ?𝔸)
+      ("|B|" . ?𝔹)
+      ("|C|" . ?ℂ)
+      ("|D|" . ?𝔻)
+      ("|E|" . ?𝔼)
+      ("|F|" . ?𝔽)
+      ("|G|" . ?𝔾)
+      ("|H|" . ?ℍ)
+      ("|I|" . ?𝕀)
+      ("|J|" . ?𝕁)
+      ("|K|" . ?𝕂)
+      ("|L|" . ?𝕃)
+      ("|M|" . ?𝕄)
+      ("|N|" . ?ℕ)
+      ("|O|" . ?𝕆)
+      ("|P|" . ?ℙ)
+      ("|Q|" . ?ℚ)
+      ("|R|" . ?ℝ)
+      ("|S|" . ?𝕊)
+      ("|T|" . ?𝕋)
+      ("|U|" . ?𝕌)
+      ("|V|" . ?𝕍)
+      ("|W|" . ?𝕎)
+      ("|X|" . ?𝕏)
+      ("|Y|" . ?𝕐)
+      ("|Z|" . ?ℤ)
+      ("|gamma|" . ?ℽ)
+      ("|Gamma|" . ?ℾ)
+      ("|pi|" . ?ℼ)
+      ("|Pi|" . ?ℿ)))
+
+  (defvar arrows
+    '(("->" . ?→)
+      ("-->" . ?⟶)
+      ("<-" . ?←)
+      ("<--" . ?⟵)
+      ("<->" . ?↔)
+      ("<-->" . ?⟷)
+      ("=>" . ?⇒)
+      ("==>" . ?⟹)
+      ("<==" . ?⟸)
+      ("<=>" . ?⇔)
+      ("<==>" . ?⟺)
+      ("|->" . ?↦)
+      ("|-->" . ?⟼)
+      ("<-|" . ?↤)
+      ("<--|" . ?⟻)
+      ("|=>" . ?⤇)
+      ("|==>" . ?⟾)
+      ("<=|" . ?⤆)
+      ("<==|" . ?⟽)
+      ("~>" . ?⇝)
+      ("<~" . ?⇜)
+      (">->" . ?↣)
+      ("<-<" . ?↢)
+      ("->>" . ?↠)
+      ("<<-" . ?↞)
+      (">->>" . ?⤖)
+      ("<<-<" . ?⬻)
+      ("<|-" . ?⇽)
+      ("-|>" . ?⇾)
+      ("<|-|>" . ?⇿)
+      ("<-/-" . ?↚)
+      ("-/->" . ?↛)
+      ("<-|-" . ?⇷)
+      ("-|->" . ?⇸)
+      ("<-|->" . ?⇹)
+      ("<-||-" . ?⇺)
+      ("-||->" . ?⇻)
+      ("<-||->" . ?⇼)
+      ("-o->" . ?⇴)
+      ("<-o-" . ?⬰)))
+
+  (defvar mathematical-symbols
+    '(("forall" . ?∀)
+      ("exists" . ?∃)
+      ("not" . ?¬)
+      ("&&" . ?∧)
+      ("||" . ?∨)
+      ("==" . ?≡)
+      ("/=" . ?≠)
+      ("!=" . ?≠)
+      ("<=" . ?≤)
+      (">=" . ?≥)
+      ("/<" . ?≮)
+      ("/>" . ?≯)
+      ("++" . ?⧺)
+      ("+++" . ?⧻)
+      ("|||" . ?⫴)
+      ("empty" . ?∅)
+      ("elem" . ?∈)
+      ("notElem" . ?∉)
+      ("member" . ?∈)
+      ("notMember" . ?∉)
+      ("union" . ?∪)
+      ("intersection" . ?∩)
+      ("subsetOf" . ?⊆)
+      ("properSubsetOf" . ?⊂)
+      ("<<" . ?≪)
+      (">>" . ?≫)
+      ("<<<" . ?⋘)
+      (">>>" . ?⋙)
+      ("<|" . ?⊲)
+      ("|>" . ?⊳)
+      ("><" . ?⋈)
+      (":=" . ?≔)
+      ("=:" . ?≕)
+      ("<+>" . ?⊕)
+      ("<*>" . ?⊛)))
+
+#+END_SRC
+
 ** which-key
 #+BEGIN_SRC emacs-lisp
 
@@ -356,16 +487,6 @@ Otherwise, use linum-relative.
 
   (use-package paredit
     :ensure t)
-
-#+END_SRC
-
-** pretty-symbols
-#+BEGIN_SRC emacs-lisp
-
-  (use-package pretty-symbols
-    :ensure t
-    :config
-    (global-prettify-symbols-mode))
 
 #+END_SRC
 
