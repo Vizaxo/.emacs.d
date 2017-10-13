@@ -538,6 +538,16 @@ Otherwise, use linum-relative.
 
 #+END_SRC
 
+** haskell
+#+BEGIN_SRC emacs-lisp
+
+  (use-package haskell-mode
+    :ensure t
+    :config
+    (add-pretty-symbols-hook 'haskell-mode-hook '(("::" . ?∷))))
+
+#+END_SRC
+
 ** Custom loads
 #+BEGIN_SRC emacs-lisp
 
