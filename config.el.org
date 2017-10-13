@@ -662,6 +662,17 @@ Todo: make trailing whitespace only show when you have left Evil insert state
 
 #+END_SRC
 
+** Minibuffer
+#+BEGIN_SRC emacs-lisp
+
+  ;; Allow to read from minibuffer while in minibuffer.
+  (setq enable-recursive-minibuffers t)
+
+  ;; Show the minibuffer depth (when larger than 1)
+  (minibuffer-depth-indicate-mode 1)
+
+#+END_SRC
+
 * Custom functions
 ** eval-current-sexp
 #+BEGIN_SRC emacs-lisp
