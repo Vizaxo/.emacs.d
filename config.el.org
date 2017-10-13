@@ -151,6 +151,33 @@
       ("<+>" . ?⊕)
       ("<*>" . ?⊛)))
 
+  (defvar greek-letters
+    '(("alpha" . ?α)
+      ("beta" . ?β)
+      ("gamma" . ?γ)
+      ("delta" . ?δ)
+      ("epsilon" . ?ε)
+      ("zeta" . ?ζ)
+      ("eta" . ?η)
+      ("theta" . ?θ)
+      ("iota" . ?ι)
+      ("kappa" . ?κ)
+      ("lambda" . ?λ)
+      ("mu" . ?μ)
+      ("nu" . ?ν)
+      ("xi" . ?ξ)
+      ("omicron" . ?ο)
+      ("pi" . ?π)
+      ("rho" . ?ρ)
+      ("sigma_final" . ?ς)
+      ("sigma" . ?σ)
+      ("tau" . ?τ)
+      ("upsilon" . ?υ)
+      ("phi" . ?φ)
+      ("chi" . ?χ)
+      ("psi" . ?ψ)
+      ("omega" . ?ω)))
+
 #+END_SRC
 
 ** which-key
@@ -438,6 +465,7 @@
     (add-pretty-symbols-hook 'org-mode-hook double-struck-letters)
     (add-pretty-symbols-hook 'org-mode-hook mathematical-symbols)
     (add-pretty-symbols-hook 'org-mode-hook arrows)
+    (add-pretty-symbols-hook 'org-mode-hook greek-letters)
 
     :bind
     (("C-c c" . my-org-capture)
