@@ -1,3 +1,10 @@
+* Lexical binding
+#+BEGIN_SRC emacs-lisp
+
+  ;; -*- lexical-binding: t -*-
+
+#+END_SRC
+
 * Packages
 ** Use-package setup
 #+BEGIN_SRC emacs-lisp
