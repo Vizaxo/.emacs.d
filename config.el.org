@@ -270,7 +270,7 @@
           (evil-open-below 1)
           (unless (with-local-quit (org-time-stamp nil))
             (call-interactively 'evil-delete-whole-line)))
-      (evil-normal-state)))
+        (evil-normal-state)))
     :bind
     (("C-c c" . my-org-capture)
      ("C-c a" . org-agenda)
