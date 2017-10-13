@@ -6,3 +6,4 @@
         ("gnu"   . "https://elpa.gnu.org/packages/")))
 
 (package-initialize)
+(package-refresh-contents t)

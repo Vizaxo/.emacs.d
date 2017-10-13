@@ -3,7 +3,6 @@
 #+BEGIN_SRC emacs-lisp
 
   (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
     (package-install 'use-package))
 
 #+END_SRC
