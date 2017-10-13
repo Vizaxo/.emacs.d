@@ -207,6 +207,21 @@
 
 #+END_SRC
 
+*** evil-cleverparens
+#+BEGIN_SRC emacs-lisp
+
+  (defun global-evil-cleverparens-mode ()
+    "Custom wrapper to enable evil-cleverparens-mode globally."
+    (interactive)
+    (add-hook 'evil-local-mode-hook #'evil-cleverparens-mode))
+
+  (use-package evil-cleverparens
+    :ensure t
+    :config
+    (global-evil-cleverparens-mode))
+
+#+END_SRC
+
 ** exwm
 #+BEGIN_SRC emacs-lisp
 
