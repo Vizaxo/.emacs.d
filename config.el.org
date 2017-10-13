@@ -197,6 +197,16 @@
 
 #+END_SRC
 
+*** evil-surround
+#+BEGIN_SRC emacs-lisp
+
+  (use-package evil-surround
+    :ensure t
+    :config
+    (global-evil-surround-mode))
+
+#+END_SRC
+
 ** exwm
 #+BEGIN_SRC emacs-lisp
 
