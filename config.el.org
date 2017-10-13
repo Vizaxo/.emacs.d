@@ -531,7 +531,7 @@ Otherwise, use linum-relative.
     (use-package linum-relative
       :ensure t
       :config
-      (setq linum-relative-current-symbol "-->")
+      (setq linum-relative-current-symbol "")
       (setq linum-relative-format "%3s ")
       (linum-relative-global-mode)))
 
