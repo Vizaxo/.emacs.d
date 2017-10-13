@@ -402,6 +402,11 @@
           (unless (with-local-quit (org-time-stamp nil))
             (call-interactively 'evil-delete-whole-line)))
         (evil-normal-state)))
+
+    (add-pretty-symbols-hook 'org-mode-hook double-struck-letters)
+    (add-pretty-symbols-hook 'org-mode-hook mathematical-symbols)
+    (add-pretty-symbols-hook 'org-mode-hook arrows)
+
     :bind
     (("C-c c" . my-org-capture)
      ("C-c a" . org-agenda)
