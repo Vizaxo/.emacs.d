@@ -673,6 +673,13 @@ Todo: make trailing whitespace only show when you have left Evil insert state
 
 #+END_SRC
 
+** Server start
+#+BEGIN_SRC emacs-lisp
+
+  (server-start)
+
+#+END_SRC
+
 * Custom functions
 ** eval-current-sexp
 #+BEGIN_SRC emacs-lisp
