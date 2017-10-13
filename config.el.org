@@ -739,3 +739,22 @@ Todo: make trailing whitespace only show when you have left Evil insert state
 
 #+END_SRC
 
+** auto-sharp-quote
+#+BEGIN_SRC emacs-lisp
+
+  (defun auto-sharp-quote ()
+    "Insert #' unless in a string or comment.
+    From http://endlessparentheses.com/get-in-the-habit-of-using-sharp-quote.html"
+    (interactive)
+    (call-interactively #'self-insert-command)
+    (let ((ppss (syntax-ppss)))
+      (unless (or (elt ppss 3))
+        (elt ppss 4)
+        (eq (char-after) ?')
+        (insert "'"))))
+
+  (evil-define-key 'normal-state 'emacs-lisp-mode-map "#" #'auto-sharp-quote)
+  (define-key emacs-lisp-mode-map "#" #'auto-sharp-quote)
+
+#+END_SRC
+
