@@ -551,7 +551,9 @@ Otherwise, use linum-relative.
 #+BEGIN_SRC emacs-lisp
 
   (use-package paredit
-    :ensure t)
+    :ensure t
+    :config
+    (add-hook 'evil-cleverparens-mode-hook #'enable-paredit-mode))
 
 #+END_SRC
 
