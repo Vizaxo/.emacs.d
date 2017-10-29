@@ -250,7 +250,7 @@
     (add-hook 'evil-local-mode-hook #'evil-cleverparens-mode))
 
   (use-package evil-cleverparens
-    :ensure t
+    :disabled
     :config
     (global-evil-cleverparens-mode))
 
