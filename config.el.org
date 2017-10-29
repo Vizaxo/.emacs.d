@@ -744,6 +744,20 @@ Todo: make trailing whitespace only show when you have left Evil insert state
 
 #+END_SRC
 
+** Eshell
+#+BEGIN_SRC emacs-lisp
+
+  (use-package bash-completion
+    :ensure t
+    :config
+    (setq eshell-default-completion-function 'eshell-bash-completion))
+
+  (defun eshell-bash-completion ()
+    (while (pcomplete-here
+            (nth 2 (bash-completion-dynamic-complete-nocomint (save-excursion (eshell-bol) (point)) (point))))))
+
+#+END_SRC
+
 * Custom functions
 ** eval-current-sexp
 #+BEGIN_SRC emacs-lisp
