@@ -361,19 +361,24 @@
 #+END_SRC
 
 ** zenburn-theme
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC
 
   (use-package zenburn-theme
     :ensure t
     :config
     (load-theme 'zenburn t))
 
-  ;; Lots of improvements from https://gist.github.com/belak/ca1c9ae75e53324ee16e2e5289a9c4bc
-  ;; TODO: add moree, and check out other configs, starter packs, etc.
-  ;; TODO: maybe configure fonts?
-  ;; TODO: properly setup evil-mode bindings
 #+END_SRC
 
+** spacemacs-theme
+#+BEGIN_SRC emacs-lisp
+
+  (use-package spacemacs-theme
+    :ensure t
+    :init
+    (load-theme 'spacemacs-dark t))
+
+#+END_SRC
 ** ido
 *** ido
 #+BEGIN_SRC emacs-lisp
