@@ -585,6 +585,14 @@ Otherwise, use linum-relative.
 
 #+END_SRC
 
+** markdown
+#+BEGIN_SRC emacs-lisp
+
+  (use-package markdown-mode
+    :ensure t)
+
+#+END_SRC
+
 ** Custom loads
 #+BEGIN_SRC emacs-lisp
 
