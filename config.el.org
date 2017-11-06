@@ -474,6 +474,12 @@
     (add-pretty-symbols-hook 'org-mode-hook arrows)
     (add-pretty-symbols-hook 'org-mode-hook greek-letters)
 
+    ;; Setup LaTeX org-src block formatting
+    (setq org-latex-listings 'minted)
+    (require 'ox-latex)
+    (add-to-list 'org-latex-packages-alist '("" "minted"))
+    (setq org-latex-pdf-process '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f" "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f" "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+
     :bind
     (("C-c c" . my-org-capture)
      ("C-c a" . org-agenda)
