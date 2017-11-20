@@ -9,4 +9,4 @@
   :ensure t)
 
 ;; Load my main literate configuration
-(org-babel-load-file (concat user-emacs-directory "config.el.org"))
+(org-babel-load-file (concat user-emacs-directory "config.el.org") t)
