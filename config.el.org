@@ -660,7 +660,6 @@ Otherwise, use linum-relative.
 #+BEGIN_SRC emacs-lisp
 
   (setq select-enable-primary t)
-  (setq-default indent-tabs-mode nil)
 
 #+END_SRC
 
@@ -760,6 +759,45 @@ Todo: make trailing whitespace only show when you have left Evil insert state
 
 #+END_SRC
 
+** Indentation
+   Use spaces for all indentation unless specified in a specific mode.
+   #+BEGIN_SRC emacs-lisp
+     (setq-default indent-tabs-mode nil)
+   #+END_SRC
+
+   Setup indentation for C using Linux kernel style
+   #+BEGIN_SRC emacs-lisp
+
+     (setq-default c-basic-offset 8)
+
+     ;; From Linux kernel style guide
+     (defun c-lineup-arglist-tabs-only (ignored)
+       "Line up argument lists by tabs, not spaces"
+       (let* ((anchor (c-langelem-pos c-syntactic-element))
+              (column (c-langelem-2nd-pos c-syntactic-element))
+              (offset (- (1+ column) anchor))
+              (steps (floor offset c-basic-offset)))
+         (* (max steps 1)
+            c-basic-offset)))
+
+     (add-hook 'c-mode-common-hook
+               (lambda ()
+                 ;; Add kernel style
+                 (c-add-style
+                  "linux-tabs-only"
+                  '("linux" (c-offsets-alist
+                             (arglist-cont-nonempty
+                              c-lineup-gcc-asm-reg
+                              c-lineup-arglist-tabs-only))))))
+
+     (add-hook 'c-mode-hook
+               (lambda ()
+                   ;; Enable kernel mode for the appropriate files
+                   (setq indent-tabs-mode t)
+                   (setq show-trailing-whitespace t)
+                   (c-set-style "linux-tabs-only")))
+
+   #+END_SRC
 * Custom functions
 ** eval-current-sexp
 #+BEGIN_SRC emacs-lisp
