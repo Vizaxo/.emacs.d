@@ -798,6 +798,13 @@ Todo: make trailing whitespace only show when you have left Evil insert state
                    (c-set-style "linux-tabs-only")))
 
    #+END_SRC
+** Ediff
+#+BEGIN_SRC emacs-lisp
+    (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+    (setq ediff-split-window-function (if (> (frame-width) 150)
+                                          'split-window-horizontally
+                                        'split-window-vertically))
+#+END_SRC
 * Custom functions
 ** eval-current-sexp
 #+BEGIN_SRC emacs-lisp
