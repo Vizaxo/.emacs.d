@@ -261,6 +261,8 @@
 #+BEGIN_SRC emacs-lisp
 
   (use-package exwm
+    :if window-system
+    :load-path ("sources/exlb" "sources/exwm")
     :ensure t
     :config
     (require 'exwm)
@@ -626,13 +628,6 @@ Otherwise, use linum-relative.
 
 #+END_SRC
 
-** Custom loads
-#+BEGIN_SRC emacs-lisp
-
-  (add-to-list 'load-path (concat user-emacs-directory "sources/exlb"))
-  (add-to-list 'load-path (concat user-emacs-directory "sources/exwm"))
-
-#+END_SRC
 
 * General settings
 ** UI
