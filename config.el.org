@@ -184,6 +184,7 @@
 #+BEGIN_SRC emacs-lisp
 
   (use-package which-key
+    :diminish
     :ensure t
     :config
     (which-key-mode))
