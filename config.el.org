@@ -612,22 +612,63 @@ Otherwise, use linum-relative.
 ** spaceline
 #+BEGIN_SRC emacs-lisp
 
-  (use-package spaceline :ensure t
+  (use-package spaceline
+    :ensure t
     :config
-    (setq powerline-height 30)
-    (setq powerline-default-separator 'utf-8)
-    (setq spaceline-separator-dir-left '(right . right))
-    (setq spaceline-separator-dir-right '(right . right))
-    (setq powerline-default-separator 'alternate) ;; alternate, slant, wave, zigzag, nil.
-    (setq spaceline-workspace-numbers-unicode t) ;for eyebrowse. nice looking unicode numbers for tagging different layouts
-    (setq spaceline-window-numbers-unicode t)
-    (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state) ; set colouring for different evil-states
     (require 'spaceline-config)
-    (spaceline-spacemacs-theme)
-    (spaceline-compile))
+    (require 'spaceline)
+    (powerline-reset)
+    (setq powerline-default-separator 'arrow) ;; arrow, alternate, slant, wave, zigzag, nil.
+    (setq spaceline-highlight-face-func #'spaceline-highlight-face-evil-state)
+      (setq spaceline-separator-dir-left '(left . left))
+      (setq spaceline-separator-dir-right '(right . right))
+    (set-face-attribute 'mode-line nil :box nil)
+    (set-face-attribute 'mode-line-inactive nil :box nil)
+
+    (spaceline-define-segment perma-hud
+      "Redefined spaceline HUD to make it display all the time."
+      (powerline-hud highlight-face default-face)
+      :tight t)
+
+    ;; Redefine some of the modeline colours
+    (let ((bg0 (face-background 'mode-line))
+          (bg1 (face-background 'powerline-active1))
+          (bg2 (face-background 'powerline-active2))
+          (invisible (face-background 'default)))
+      (set-face-background 'mode-line bg0)
+      (set-face-background 'mode-line-inactive bg0)
+      (set-face-background 'powerline-active1 bg2)
+      (set-face-background 'powerline-active2 invisible)
+      (set-face-background 'powerline-inactive1 bg0)
+      (set-face-background 'powerline-inactive2 invisible))
+
+    ;; Custom spaceline
+    (spaceline-install
+      '((evil-state :face highlight-face)
+        (buffer-size)
+        ((buffer-id)
+         (remote-host))
+        (process :when active)
+        ((flycheck-error flycheck-warning flycheck-info)
+         :when active
+         :priority 3)
+        (mu4e-alert-segment :when active)
+        (erc-track :when active)
+        (version-control :when active
+                         :priority 7)
+        (org-pomodoro :when active)
+        (org-clock :when active))
+      '((battery :when active)
+        (global :when active)
+        (line-column)
+        (buffer-position :priority 0)
+        (perma-hud ;:when (not (string-eq major-mode "exwm-mode"))
+         :tight nil
+         :tight-right t)))
+
+    (setq-default mode-line-format '("%e" (:eval (spaceline-ml-main)))))
 
 #+END_SRC
-
 
 * General settings
 ** UI
