@@ -17,8 +17,7 @@
 ** try
 #+BEGIN_SRC emacs-lisp
 
-  (use-package try
-    :ensure t)
+  (use-package try)
 
 #+END_SRC
 
@@ -26,7 +25,6 @@
 #+BEGIN_SRC emacs-lisp
 
   (use-package pretty-symbols
-    :ensure t
     :config
     (global-prettify-symbols-mode))
 
@@ -185,7 +183,6 @@
 
   (use-package which-key
     :diminish
-    :ensure t
     :config
     (which-key-mode))
 
@@ -195,7 +192,6 @@
 #+BEGIN_SRC emacs-lisp
 
   (use-package web-mode
-    :ensure t
     :mode (("\\.html?\\'" . web-mode)
            ("\\.php?\\'"  . web-mode)
            ("\\.js?\\'"   . web-mode)
@@ -207,7 +203,6 @@
 #+BEGIN_SRC emacs-lisp
 
   (use-package magit
-    :ensure t
     :config
     (defun my-magit-status ()
       (interactive)
@@ -223,7 +218,6 @@
 #+BEGIN_SRC emacs-lisp
 
   (use-package evil
-    :ensure t
     :config
     ;; Make Evil's point behave more like Emacs'
     (setq evil-want-change-word-to-end nil)
@@ -236,7 +230,6 @@
 #+BEGIN_SRC emacs-lisp
 
   (use-package evil-surround
-    :ensure t
     :config
     (global-evil-surround-mode))
 
@@ -263,7 +256,6 @@
   (use-package exwm
     :if window-system
     :load-path ("sources/exlb" "sources/exwm")
-    :ensure t
     :config
     (require 'exwm)
     (require 'exwm-config)
@@ -357,7 +349,6 @@
 #+BEGIN_SRC emacs-lisp
 
   (use-package smex
-    :ensure t
     :bind
     (("M-x" . smex)))
 
@@ -367,7 +358,6 @@
 #+BEGIN_SRC
 
   (use-package zenburn-theme
-    :ensure t
     :config
     (load-theme 'zenburn t))
 
@@ -377,7 +367,6 @@
 #+BEGIN_SRC emacs-lisp
 
   (use-package spacemacs-theme
-    :ensure t
     :init
     (load-theme 'spacemacs-dark t))
 
@@ -387,7 +376,6 @@
 #+BEGIN_SRC emacs-lisp
 
   (use-package ido
-    :ensure t
     :config
     (ido-mode 1)
     (ido-everywhere t)
@@ -400,7 +388,6 @@
 #+BEGIN_SRC emacs-lisp
 
   (use-package ido-ubiquitous
-    :ensure t
     :config
     (ido-ubiquitous-mode))
 
@@ -410,7 +397,6 @@
 #+BEGIN_SRC emacs-lisp
 
   (use-package ido-vertical-mode
-    :ensure t
     :config
     (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right
           ido-vertical-show-count t)
@@ -422,7 +408,6 @@
 #+BEGIN_SRC emacs-lisp
 
   (use-package flx-ido
-    :ensure t
     :config
     (flx-ido-mode 1))
 
@@ -432,7 +417,6 @@
 #+BEGIN_SRC emacs-lisp
 
   (use-package org
-    :ensure t
     :config
     (setq org-refile-use-outline-path 'file)
     (setq org-src-fontify-natively t)
@@ -495,7 +479,6 @@
 #+BEGIN_SRC emacs-lisp
 
   (use-package auto-complete
-    :ensure t
     :config
     (ac-config-default)
     (global-auto-complete-mode))
@@ -506,7 +489,6 @@
 #+BEGIN_SRC emacs-lisp
 
   (use-package eclim
-    :ensure t
     :config
     (setq eclim-executable "/home/mitch/programs/eclipse-neon/eclim")
     (add-hook 'java-mode-hook 'eclim-mode)
@@ -521,7 +503,6 @@
 #+BEGIN_SRC emacs-lisp
 
   (use-package ace-jump-mode
-    :ensure t
     :config
     ;; Only search in the current frame
     ;; Might need to be adjusted if I want multi-monitor jumping
@@ -545,7 +526,6 @@ Otherwise, use linum-relative.
   (if (boundp 'display-line-numbers)
       (setq-default display-line-numbers 'relative)
     (use-package linum-relative
-      :ensure t
       :config
       (setq linum-relative-current-symbol "")
       (setq linum-relative-format "%3s ")
@@ -557,7 +537,6 @@ Otherwise, use linum-relative.
 #+BEGIN_SRC emacs-lisp
 
   (use-package rainbow-delimiters
-    :ensure t
     :config
     (rainbow-delimiters-mode 1))
 
@@ -567,7 +546,6 @@ Otherwise, use linum-relative.
 #+BEGIN_SRC emacs-lisp
 
   (use-package paredit
-    :ensure t
     :config
     (add-hook 'evil-cleverparens-mode-hook #'enable-paredit-mode))
 
@@ -577,7 +555,6 @@ Otherwise, use linum-relative.
 #+BEGIN_SRC emacs-lisp
 
   (use-package gnus
-    :ensure t
     :config
     (org-babel-load-file (concat user-emacs-directory "gnus.el.org")))
 
@@ -595,7 +572,6 @@ Otherwise, use linum-relative.
 #+BEGIN_SRC emacs-lisp
 
   (use-package haskell-mode
-    :ensure t
     :config
     (add-pretty-symbols-hook 'haskell-mode-hook '(("::" . ?∷))))
 
@@ -604,8 +580,7 @@ Otherwise, use linum-relative.
 ** markdown
 #+BEGIN_SRC emacs-lisp
 
-  (use-package markdown-mode
-    :ensure t)
+  (use-package markdown-mode)
 
 #+END_SRC
 
@@ -613,7 +588,6 @@ Otherwise, use linum-relative.
 #+BEGIN_SRC emacs-lisp
 
   (use-package spaceline
-    :ensure t
     :config
     (require 'spaceline-config)
     (require 'spaceline)
@@ -790,7 +764,6 @@ Todo: make trailing whitespace only show when you have left Evil insert state
 #+BEGIN_SRC emacs-lisp
 
   (use-package bash-completion
-    :ensure t
     :config
     (setq eshell-default-completion-function 'eshell-bash-completion))
 

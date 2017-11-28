@@ -7,3 +7,5 @@
 
 (package-initialize)
 (package-refresh-contents t)
+
+(setq use-package-always-ensure t)
