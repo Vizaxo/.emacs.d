@@ -518,6 +518,7 @@ Otherwise, use linum-relative.
   (if (boundp 'display-line-numbers)
       (setq-default display-line-numbers 'relative)
     (use-package linum-relative
+      :disabled t
       :config
       (setq linum-relative-current-symbol "")
       (setq linum-relative-format "%3s ")
