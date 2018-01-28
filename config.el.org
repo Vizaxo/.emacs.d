@@ -568,6 +568,13 @@ Otherwise, use linum-relative.
     :config
     (add-pretty-symbols-hook 'haskell-mode-hook '(("::" . ?∷))))
 
+  (use-package intero
+    :config
+    (intero-global-mode)
+    (evil-define-key 'normal intero-mode-map (kbd "C-]") #'intero-goto-definition))
+
+#+END_SRC
+
 #+END_SRC
 
 ** markdown
