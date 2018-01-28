@@ -595,6 +595,12 @@ Otherwise, use linum-relative.
 #+BEGIN_SRC emacs-lisp
 
   (use-package spaceline
+    :init
+    (spaceline-define-segment perma-hud
+      "Redefined spaceline HUD to make it display all the time."
+      (powerline-hud highlight-face default-face)
+      :tight t)
+
     :config
     (require 'spaceline-config)
     (require 'spaceline)
@@ -606,11 +612,6 @@ Otherwise, use linum-relative.
     (set-face-attribute 'mode-line nil :box nil)
     (set-face-attribute 'mode-line-inactive nil :box nil)
 
-    (spaceline-define-segment perma-hud
-      "Redefined spaceline HUD to make it display all the time."
-      (powerline-hud highlight-face default-face)
-      :tight t)
-
     ;; Redefine some of the modeline colours
     (let ((bg0 (face-background 'mode-line))
           (bg1 (face-background 'powerline-active1))
@@ -618,7 +619,7 @@ Otherwise, use linum-relative.
           (invisible (face-background 'default)))
       (set-face-background 'mode-line bg0)
       (set-face-background 'mode-line-inactive bg0)
-      (set-face-background 'powerline-active1 bg2)
+      (set-face-background 'powerline-active1 bg0)
       (set-face-background 'powerline-active2 invisible)
       (set-face-background 'powerline-inactive1 bg0)
       (set-face-background 'powerline-inactive2 invisible))
