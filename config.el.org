@@ -575,6 +575,13 @@ Otherwise, use linum-relative.
 
 #+END_SRC
 
+** idris
+#+BEGIN_SRC emacs-lisp
+
+  (use-package idris-mode
+    :config
+    (setq idris-interpreter-path "/home/mitch/.local/bin/idris"))
+
 #+END_SRC
 
 ** markdown
