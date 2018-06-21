@@ -652,6 +652,12 @@ Otherwise, use linum-relative.
     (setq-default mode-line-format '("%e" (:eval (spaceline-ml-main)))))
 
 #+END_SRC
+** olivetti
+#+BEGIN_SRC emacs-lisp
+  (use-package olivetti
+    :config
+    (add-hook 'text-mode-hook 'olivetti-mode))
+#+END_SRC
 
 * General settings
 ** UI
@@ -828,6 +834,12 @@ Todo: make trailing whitespace only show when you have left Evil insert state
                                           'split-window-horizontally
                                         'split-window-vertically))
 #+END_SRC
+** Text mode hooks
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'text-mode-hook 'flyspell-mode)
+  (add-hook 'text-mode-hook 'visual-line-mode)
+#+END_SRC
+
 * Custom functions
 ** eval-current-sexp
 #+BEGIN_SRC emacs-lisp
