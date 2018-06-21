@@ -580,7 +580,8 @@ Otherwise, use linum-relative.
 
   (use-package idris-mode
     :config
-    (setq idris-interpreter-path "/home/mitch/.local/bin/idris"))
+    (setq idris-interpreter-path "/home/mitch/.local/bin/idris")
+    (setq idris-stay-in-current-window-on-compiler-error t))
 
 #+END_SRC
 
