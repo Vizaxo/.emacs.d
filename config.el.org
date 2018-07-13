@@ -174,7 +174,8 @@
       ("phi" . ?φ)
       ("chi" . ?χ)
       ("psi" . ?ψ)
-      ("omega" . ?ω)))
+      ("omega" . ?ω)
+      ("Sigma" . ?Σ)))
 
 #+END_SRC
 
