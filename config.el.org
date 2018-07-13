@@ -256,6 +256,8 @@
   (use-package exwm
     :if window-system
     :load-path ("sources/exlb" "sources/exwm")
+    :defer t
+    :commands (exwm-init)
     :config
     (require 'exwm)
     (require 'exwm-config)
@@ -270,8 +272,6 @@
     ;; Don't use evil-mode in exwm buffers
     (add-to-list 'evil-emacs-state-modes 'exwm-mode)
 
-    ;; 's-w': Switch workspace
-    (exwm-input-set-key (kbd "s-w") #'exwm-workspace-switch)
     ;; 's-N': Switch to certain workspace
     (dotimes (i 10)
       (exwm-input-set-key (kbd (format "s-%d" i))
@@ -340,6 +340,7 @@
     ;; Allow switching buffers between workspaces
     (setq exwm-workspace-show-all-buffers t)
     (setq exwm-layout-show-all-buffers t)
+    (message "exwm loaded")
 
     (call-process-shell-command "~/data/scripts/startup.sh"))
 
