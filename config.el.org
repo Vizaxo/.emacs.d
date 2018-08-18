@@ -842,6 +842,10 @@ Todo: make trailing whitespace only show when you have left Evil insert state
   (add-hook 'text-mode-hook 'visual-line-mode)
 #+END_SRC
 
+** Don't pop-up certain buffers
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'display-buffer-alist (cons "\\*Async Shell Command\\*.*" (cons #'display-buffer-no-window nil)))
+#+END_SRC
 * Custom functions
 ** eval-current-sexp
 #+BEGIN_SRC emacs-lisp
@@ -920,3 +924,16 @@ Todo: make trailing whitespace only show when you have left Evil insert state
 
 #+END_SRC
 
+** pandoc-preview-pdf
+#+BEGIN_SRC emacs-lisp
+
+  (defun pandoc-preview-pdf ()
+    (interactive)
+    (let* ((input-file-name (buffer-file-name))
+          (file-root-name (file-name-sans-extension input-file-name))
+          (pdf-name (concat file-root-name ".pdf"))
+          (pandoc-command (concat "pandoc -o" pdf-name " " input-file-name)))
+      (save-buffer)
+      (async-shell-command pandoc-command)))
+
+#+END_SRC
