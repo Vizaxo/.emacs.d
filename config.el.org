@@ -932,7 +932,10 @@ Todo: make trailing whitespace only show when you have left Evil insert state
     (let* ((input-file-name (buffer-file-name))
           (file-root-name (file-name-sans-extension input-file-name))
           (pdf-name (concat file-root-name ".pdf"))
-          (pandoc-command (concat "pandoc -o" pdf-name " " input-file-name)))
+          (bib (if (file-exists-p "bib.bib")
+                   "--bibliography bib.bib "
+                 ""))
+          (pandoc-command (concat "pandoc " bib " -o" pdf-name " " input-file-name)))
       (save-buffer)
       (async-shell-command pandoc-command)))
 
