@@ -590,7 +590,10 @@ Otherwise, use linum-relative.
 ** markdown
 #+BEGIN_SRC emacs-lisp
 
-  (use-package markdown-mode)
+    (use-package markdown-mode
+      :bind
+      (:map markdown-mode-map)
+      (("C-c C-l" . #'pandoc-preview-pdf)))
 
 #+END_SRC
 
@@ -845,6 +848,7 @@ Todo: make trailing whitespace only show when you have left Evil insert state
 ** Don't pop-up certain buffers
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'display-buffer-alist (cons "\\*Async Shell Command\\*.*" (cons #'display-buffer-no-window nil)))
+  (add-to-list 'display-buffer-alist (cons "\\*pandoc-output\\*.*" (cons #'display-buffer-no-window nil)))
 #+END_SRC
 * Custom functions
 ** eval-current-sexp
@@ -930,16 +934,23 @@ Todo: make trailing whitespace only show when you have left Evil insert state
   (defun pandoc-preview-pdf ()
     (interactive)
     (let* ((input-file-name (buffer-file-name))
-          (file-root-name (file-name-sans-extension input-file-name))
-          (pdf-name (concat file-root-name ".pdf"))
-          (bib (if (file-exists-p "bib.bib")
-                   "--bibliography bib.bib "
-                 ""))
-          (csl (if (file-exists-p "csl.csl")
-                   "--csl=csl.csl "
-                 ""))
-          (pandoc-command (concat "pandoc " bib csl " -o" pdf-name " " input-file-name)))
+           (file-root-name (file-name-sans-extension input-file-name))
+           (pdf-buffer (get-buffer (concat (file-name-sans-extension (buffer-name)) ".pdf")))
+           (pdf-name (concat file-root-name ".pdf"))
+           (bib (if (file-exists-p "bib.bib")
+                    "--bibliography bib.bib "
+                  ""))
+           (csl (if (file-exists-p "csl.csl")
+                    "--csl=csl.csl "
+                  ""))
+           (pandoc-command (concat "pandoc --toc --number-sections " bib csl " -o" pdf-name " " input-file-name)))
       (save-buffer)
-      (async-shell-command pandoc-command)))
+      (async-shell-command pandoc-command "*pandoc-output*")
+      (if (null pdf-buffer)
+          (message "Can't find pdf buffer")
+        ; It should auto-revert
+        ;(with-current-buffer pdf-buffer
+          ;(revert-buffer :ignore-auto :noconfirm))
+        (display-buffer pdf-buffer))))
 
 #+END_SRC
