@@ -940,10 +940,13 @@ Todo: make trailing whitespace only show when you have left Evil insert state
            (bib (if (file-exists-p "bib.bib")
                     "--bibliography bib.bib "
                   ""))
+           (template (if (file-exists-p "template.latex")
+                    "--template template.latex "
+                  ""))
            (csl (if (file-exists-p "csl.csl")
                     "--csl=csl.csl "
                   ""))
-           (pandoc-command (concat "pandoc --toc --number-sections " bib csl " -o" pdf-name " " input-file-name)))
+           (pandoc-command (concat "pandoc --toc --number-sections " bib csl template " -o" pdf-name " " input-file-name)))
       (save-buffer)
       (async-shell-command pandoc-command "*pandoc-output*")
       (if (null pdf-buffer)
