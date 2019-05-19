@@ -957,3 +957,11 @@ Todo: make trailing whitespace only show when you have left Evil insert state
         (display-buffer pdf-buffer))))
 
 #+END_SRC
+** screenshot
+#+BEGIN_SRC emacs-lisp
+  (defun take-screenshot ()
+    (interactive)
+    (async-shell-command "cd ~/data/pictures/screenshots && scrot"))
+
+  (exwm-input-set-key (kbd "<print>") 'take-screenshot)
+#+END_SRC
