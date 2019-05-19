@@ -360,6 +360,7 @@
 #+BEGIN_SRC
 
   (use-package zenburn-theme
+    :disabled t
     :config
     (load-theme 'zenburn t))
 
@@ -369,10 +370,20 @@
 #+BEGIN_SRC emacs-lisp
 
   (use-package spacemacs-theme
+    :disabled t
     :init
     (load-theme 'spacemacs-dark t))
 
 #+END_SRC
+** solarized-dark
+#+BEGIN_SRC emacs-lisp
+
+  (use-package solarized-theme
+    :init
+    (load-theme 'solarized-dark t))
+
+#+END_SRC
+
 ** ido
 *** ido
 #+BEGIN_SRC emacs-lisp
