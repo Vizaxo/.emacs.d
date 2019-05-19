@@ -256,7 +256,7 @@
 
   (use-package exwm
     :if window-system
-    :load-path ("sources/exlb" "sources/exwm")
+    ;:load-path ("sources/exlb" "sources/exwm")
     :defer t
     :commands (exwm-init)
     :config
@@ -402,6 +402,7 @@
 #+BEGIN_SRC emacs-lisp
 
   (use-package ido-ubiquitous
+    :disabled t
     :config
     (ido-ubiquitous-mode))
 
