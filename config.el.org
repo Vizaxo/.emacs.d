@@ -741,7 +741,7 @@ Otherwise, use linum-relative.
 ** Set the font
 #+BEGIN_SRC emacs-lisp
 
-  (set-face-attribute 'default nil :height 130 :weight 'normal)
+  (set-face-attribute 'default nil :family "DejaVu Sans Mono" :height 120 :weight 'normal)
   (setq-default line-spacing 0)
 
 #+END_SRC
