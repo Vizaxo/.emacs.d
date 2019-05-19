@@ -850,6 +850,19 @@ Todo: make trailing whitespace only show when you have left Evil insert state
   (add-to-list 'display-buffer-alist (cons "\\*Async Shell Command\\*.*" (cons #'display-buffer-no-window nil)))
   (add-to-list 'display-buffer-alist (cons "\\*pandoc-output\\*.*" (cons #'display-buffer-no-window nil)))
 #+END_SRC
+** Other keybindings
+#+BEGIN_SRC emacs-lisp
+  (define-key global-map (kbd "C-c C-h")
+    (lambda ()
+      (interactive)
+      (save-window-excursion
+        (compile compile-command))))
+
+  (evil-define-key '(normal motion) global-map (kbd "TAB") #'outline-toggle-children)
+  (evil-define-key '(normal motion) global-map (kbd "M-<down>") #'outline-move-subtree-down)
+  (evil-define-key '(normal motion) global-map (kbd "M-<up>") #'outline-move-subtree-up)
+
+#+END_SRC
 * Custom functions
 ** eval-current-sexp
 #+BEGIN_SRC emacs-lisp
