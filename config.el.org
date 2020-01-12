@@ -570,7 +570,10 @@ Otherwise, use linum-relative.
 ** gpg
 #+BEGIN_SRC emacs-lisp
 
-  (setq epa-pinentry-mode 'loopback)
+  (use-package pinentry)
+  (use-package epa
+    :config
+    (setq epa-pinentry-mode 'loopback)
   (pinentry-start)
 
 #+END_SRC
