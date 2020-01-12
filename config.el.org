@@ -685,6 +685,15 @@ Otherwise, use linum-relative.
                   (shell-command-to-string "agda-mode locate")))
 #+END_SRC
 
+** yasnippet
+#+BEGIN_SRC emacs-lisp
+  (use-package yasnippet
+    :config
+    (setq yas-snippet-dirs
+          '("~/.emacs.d/snippets"))
+    (yas-global-mode))
+#+END_SRC
+
 * General settings
 ** UI
 #+BEGIN_SRC emacs-lisp
