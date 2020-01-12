@@ -694,6 +694,13 @@ Otherwise, use linum-relative.
     (yas-global-mode))
 #+END_SRC
 
+** coq
+#+BEGIN_SRC emacs-lisp
+  (use-package proof-general
+    :init
+    (setq coq-mode-abbrev-table '()))
+#+END_SRC
+
 * General settings
 ** UI
 #+BEGIN_SRC emacs-lisp
